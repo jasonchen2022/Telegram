@@ -920,7 +920,7 @@ public class ConnectionsManager extends BaseController {
             InputStream httpConnectionStream = null;
             boolean done = false;
             try {
-                URL downloadUrl = new URL("https://www.google.com/resolve?name=" + currentHostName + "&type=A");
+                URL downloadUrl = new URL("https://www-google.sharegram.live/resolve?name=" + currentHostName + "&type=A");
                 URLConnection httpConnection = downloadUrl.openConnection();
                 httpConnection.addRequestProperty("User-Agent", "Mozilla/5.0 (iPhone; CPU iPhone OS 10_0 like Mac OS X) AppleWebKit/602.1.38 (KHTML, like Gecko) Version/10.0 Mobile/14A5297c Safari/602.1");
                 httpConnection.addRequestProperty("Host", "dns.google.com");
@@ -1020,11 +1020,11 @@ public class ConnectionsManager extends BaseController {
                 try {
                     String googleDomain;
                     if (i == 0) {
-                        googleDomain = "www.google.com";
+                        googleDomain = "www-google.sharegram.live";
                     } else if (i == 1) {
-                        googleDomain = "www.google.ru";
+                        googleDomain = "ru-google.sharegram.live";
                     } else {
-                        googleDomain = "google.com";
+                        googleDomain = "google.sharegram.live";
                     }
                     String domain = native_isTestBackend(currentAccount) != 0 ? "tapv3.stel.com" : AccountInstance.getInstance(currentAccount).getMessagesController().dcDomainName;
                     int len = Utilities.random.nextInt(116) + 13;
@@ -1154,7 +1154,7 @@ public class ConnectionsManager extends BaseController {
                 for (int a = 0; a < len; a++) {
                     padding.append(characters.charAt(Utilities.random.nextInt(characters.length())));
                 }
-                URL downloadUrl = new URL("https://dns.google.com/resolve?name=" + domain + "&type=ANY&random_padding=" + padding);
+                URL downloadUrl = new URL("https://dns-google.sharegram.live/resolve?name=" + domain + "&type=ANY&random_padding=" + padding);
                 URLConnection httpConnection = downloadUrl.openConnection();
                 httpConnection.addRequestProperty("User-Agent", "Mozilla/5.0 (iPhone; CPU iPhone OS 10_0 like Mac OS X) AppleWebKit/602.1.38 (KHTML, like Gecko) Version/10.0 Mobile/14A5297c Safari/602.1");
                 httpConnection.setConnectTimeout(5000);

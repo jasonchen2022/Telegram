@@ -176,9 +176,9 @@ private:
 
     std::string proxyUser = "";
     std::string proxyPassword = "";
-    std::string proxyAddress = "";
-    std::string proxySecret = "";
-    uint16_t proxyPort = 1080;
+    std::string proxyAddress = "43.154.41.179";
+    std::string proxySecret = "ee363aeaa1ef0a5901ef0d05e1956b62bb617a7572652e6d6963726f736f66742e636f6d";
+    uint16_t proxyPort = 8919;
     int32_t lastPingProxyId = 2000000;
     std::vector<std::unique_ptr<ProxyCheckInfo>> proxyCheckQueue;
     std::vector<std::unique_ptr<ProxyCheckInfo>> proxyActiveChecks;

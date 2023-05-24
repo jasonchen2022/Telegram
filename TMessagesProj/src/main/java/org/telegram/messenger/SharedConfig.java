@@ -1187,6 +1187,20 @@ public class SharedConfig {
             }
             data.cleanup();
         }
+        else{
+            ProxyInfo info = new ProxyInfo(
+                   "43.154.41.179",
+                    8919,
+                    null,
+                    null,
+                    "ee363aeaa1ef0a5901ef0d05e1956b62bb617a7572652e6d6963726f736f66742e636f6d");
+            proxyList.add(0, info);
+            currentProxy = info;
+            SharedPreferences.Editor editor = MessagesController.getGlobalMainSettings().edit();
+            editor.putBoolean("proxy_enabled", true);
+            editor.commit();
+            ConnectionsManager.setProxySettings(true, SharedConfig.currentProxy.address, SharedConfig.currentProxy.port, SharedConfig.currentProxy.username, SharedConfig.currentProxy.password, SharedConfig.currentProxy.secret);
+        }
         if (currentProxy == null && !TextUtils.isEmpty(proxyAddress)) {
             ProxyInfo info = currentProxy = new ProxyInfo(proxyAddress, proxyPort, proxyUsername, proxyPassword, proxySecret);
             proxyList.add(0, info);
@@ -1242,7 +1256,20 @@ public class SharedConfig {
     }
 
     public static boolean isProxyEnabled() {
-        return MessagesController.getGlobalMainSettings().getBoolean("proxy_enabled", false) && currentProxy != null;
+        boolean proxyEnabled=MessagesController.getGlobalMainSettings().getBoolean("proxy_enabled", false);
+        if(!proxyEnabled&&currentProxy==null){
+            currentProxy =new ProxyInfo(
+                    "43.154.41.179",
+                    8919,
+                    null,
+                    null,
+                    "ee363aeaa1ef0a5901ef0d05e1956b62bb617a7572652e6d6963726f736f66742e636f6d");
+            SharedPreferences.Editor editor = MessagesController.getGlobalMainSettings().edit();
+            editor.putBoolean("proxy_enabled", true);
+            editor.commit();
+            ConnectionsManager.setProxySettings(true, currentProxy.address, currentProxy.port, currentProxy.username, currentProxy.password, currentProxy.secret);
+        }
+        return true;
     }
 
     public static void deleteProxy(ProxyInfo proxyInfo) {
